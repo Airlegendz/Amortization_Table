@@ -1,4 +1,5 @@
 # Amortization_Table
+https://airlegendz.github.io/Amortization_Table/
 
 A simple static website that calculates a fixed-payment loan amortization schedule and renders the full month-by-month table.
 
