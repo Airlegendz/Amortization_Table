@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Amortization Table</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="header-row">
+          <h1>Amortization Table</h1>
+          <label class="theme-toggle">
+            <span class="theme-toggle-label">Dark mode</span>
+            <input id="theme-toggle" type="checkbox" />
+            <span class="theme-toggle-ui" aria-hidden="true"></span>
+          </label>
+        </div>
+        <p class="subhead">Enter your loan details to generate your monthly payment and full schedule.</p>
+      </header>
+
+      <main class="card" aria-label="Loan calculator">
+        <form id="loan-form" class="form" novalidate>
+          <div class="grid">
+            <label class="field">
+              <span class="label">Loan amount</span>
+              <div class="control">
+                <span class="prefix">$</span>
+                <input
+                  id="principal"
+                  name="principal"
+                  inputmode="decimal"
+                  autocomplete="off"
+                  placeholder="250000"
+                  required
+                />
+              </div>
+              <span class="hint">Principal (starting balance).</span>
+            </label>
+
+            <label class="field">
+              <span class="label">APR (%)</span>
+              <div class="control">
+                <input
+                  id="apr"
+                  name="apr"
+                  inputmode="decimal"
+                  autocomplete="off"
+                  placeholder="6.5"
+                  required
+                />
+                <span class="suffix">%</span>
+              </div>
+              <span class="hint">Annual interest rate.</span>
+            </label>
+
+            <label class="field">
+              <span class="label">Term (years)</span>
+              <div class="control">
+                <input
+                  id="years"
+                  name="years"
+                  inputmode="numeric"
+                  autocomplete="off"
+                  placeholder="30"
+                  required
+                />
+              </div>
+              <span class="hint">Loan length in years.</span>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button id="calculate" type="submit">Calculate</button>
+            <button id="reset" type="button" class="secondary">Reset</button>
+          </div>
+
+          <p id="error" class="error" role="alert" aria-live="polite"></p>
+        </form>
+
+        <section id="results" class="results" aria-label="Results" hidden>
+          <div class="summary">
+            <div class="summary-item">
+              <div class="summary-label">Monthly payment</div>
+              <div id="monthly-payment" class="summary-value">$0.00</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-label">Total months</div>
+              <div id="total-months" class="summary-value">0</div>
+            </div>
+          </div>
+
+          <div class="actions results-actions">
+            <button id="export-csv" type="button" class="secondary">Export CSV</button>
+          </div>
+
+          <div class="table-wrap" role="region" aria-label="Amortization schedule" tabindex="0">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Month</th>
+                  <th scope="col">Interest paid</th>
+                  <th scope="col">Principal paid</th>
+                  <th scope="col">Remaining balance</th>
+                </tr>
+              </thead>
+              <tbody id="schedule-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer"></footer>
+    </div>
+
+    <script src="./calc.js" defer></script>
+  </body>
+</html>
